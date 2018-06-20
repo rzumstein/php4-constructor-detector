@@ -25,3 +25,4 @@ chmod +x php4-constructor-detector
 - Allow non-recursive scanning
 - Add option to automatically fix php4 constructors
 - Show how many violations each file has as opposed to just showing the filename
+- Add sanity checking to ensure the user actually passes in a directory as an argument
