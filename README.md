@@ -24,3 +24,4 @@ chmod +x php4-constructor-detector
 - Allow ignoring (sub)directories
 - Allow non-recursive scanning
 - Add option to automatically fix php4 constructors
+- Show how many violations each file has as opposed to just showing the filename
