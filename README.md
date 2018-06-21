@@ -36,4 +36,4 @@ node pcd.js /path/to/src/
 
 ----
 
-Thanks to: [Matt Meisberger](https://gist.github.com/matthewdaniel) for providing the Node version of this script
+Thanks to: [Matt Meisberger](https://github.com/matthewdaniel) for providing the Node version of this script
