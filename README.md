@@ -6,11 +6,18 @@ Finds PHP classes that use the PHP4 constructor style that is now deprecated in 
 
 ## Use
 
-Clone this repo or download php4-constructor-detector.py.  Run the script by providing a directory to scan for PHP files, e.g.:
+Clone this repo; or download either `pcd.py` or `pcd.js`.  Run the script by providing a directory to scan for PHP files, e.g.:
+
+To run using Python:
 
 ```bash
-chmod +x php4-constructor-detector
-./php4-constructor-detector.py /path/to/src/
+python3 pcd.py /path/to/src/
+```
+
+To run using Node:
+
+```bash
+node pcd.js /path/to/src/
 ```
 
 ## Supported Platforms
@@ -26,3 +33,7 @@ chmod +x php4-constructor-detector
 - Add option to automatically fix php4 constructors
 - Show how many violations each file has as opposed to just showing the filename
 - Add sanity checking to ensure the user actually passes in a directory as an argument
+
+----
+
+Thanks to: [Matt Meisberger](https://gist.github.com/matthewdaniel) for providing the Node version of this script
