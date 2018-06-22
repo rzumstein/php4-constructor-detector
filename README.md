@@ -15,7 +15,7 @@ python3 pcd.py /path/to/src/
 To run recursively:
 
 ```bash
-python3 -r pcd.py /path/to/src/
+python3 pcd.py -r /path/to/src/
 ```
 
 ## Supported Platforms
