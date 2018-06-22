@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
-import sys
+import argparse
 from os import walk
 
-try:
-    print('Scanning directory: %s' % sys.argv[1])
-except IndexError:
-    sys.exit('You must provide a directory to search')
+parser = argparse.ArgumentParser(description='PHP4 Constructor Detector')
+parser.add_argument('-r', '-R', '--recursive', action='store_true', help='Recursively scan directory')
+parser.add_argument('dir', help='Directory to scan')
 
+args = parser.parse_args()
 files_using_php4_constructors = []
 
-for (dirpath, dirnames, filenames) in walk(sys.argv[1]):
-    print('Scanning directory: %s' % dirpath)
+for (dirpath, dirnames, filenames) in walk(args.dir):
+    print('\nScanning directory: %s' % dirpath)
     for fl in filenames:
         if not '.php' in fl:
             continue
@@ -26,15 +26,20 @@ for (dirpath, dirnames, filenames) in walk(sys.argv[1]):
                     elif class_name and l.startswith('function '):
                         function_name = l.replace('function ', '')
                         function_name = function_name[:function_name.find('(')]
-                        if (function_name == class_name):
+                        if function_name == class_name:
                             files_using_php4_constructors.append(dirpath + '\\' + fl)
         except FileNotFoundError:
             print('Could not find file %s. Skipping...' % (dirpath + '\\' + fl))
         except UnicodeDecodeError:
             continue
+    if not args.recursive:
+        break
 
 print('\n\nFiles using PHP4 constructors')
 print('-----------------------------')
 
-for f in set(files_using_php4_constructors):
-    print(f)
+if not files_using_php4_constructors:
+    print('None')
+else:
+    for f in set(files_using_php4_constructors):
+        print(f)
