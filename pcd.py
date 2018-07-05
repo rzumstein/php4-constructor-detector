@@ -1,22 +1,36 @@
 #!/usr/bin/env python3
 
 import argparse
+from itertools import product
 from os import walk
 from os import path
 from sys import exit
 
+def dir_is_subdir(curdir, dirs):
+    for d in dirs:
+        if d in curdir:
+            return True
+    return False
+
 parser = argparse.ArgumentParser(description='PHP4 Constructor Detector')
 parser.add_argument('-r', '-R', '--recursive', action='store_true', help='Recursively scan directory')
+parser.add_argument('-i', '--ignore', help='Directories to ignore')
 parser.add_argument('dir', help='Directory to scan')
 
 args = parser.parse_args()
-files_using_php4_constructors = []
 
 if not path.isdir(args.dir):
     print('%s is not a valid directory' % args.dir)
     exit()
 
+# args.ignore = list(map(lambda p: Path(p), args.ignore.strip(' \t\n\r\\').split(','))) if args.ignore else []
+args.ignore = args.ignore.strip(' \t\n\r\\/').split(',') if args.ignore else []
+
+files_using_php4_constructors = []
+
 for (dirpath, dirnames, filenames) in walk(args.dir):
+    if dir_is_subdir(dirpath, args.ignore):
+        continue
     print('\nScanning directory: %s' % dirpath)
     for fl in filenames:
         if not '.php' in fl:
