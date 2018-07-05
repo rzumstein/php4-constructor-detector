@@ -18,6 +18,12 @@ To run recursively:
 python3 pcd.py -r /path/to/src/
 ```
 
+To ignore subdirectories, pass them to `--ignore` as a comma-separated list:
+
+```bash
+python3 pcd.py -r -i /path/to/src/subdir1,/path/to/src/subdir2 /path/to/source
+```
+
 ## Supported Platforms
 
 - Windows
