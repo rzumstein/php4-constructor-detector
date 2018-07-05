@@ -2,6 +2,8 @@
 
 import argparse
 from os import walk
+from os import path
+from sys import exit
 
 parser = argparse.ArgumentParser(description='PHP4 Constructor Detector')
 parser.add_argument('-r', '-R', '--recursive', action='store_true', help='Recursively scan directory')
@@ -9,6 +11,10 @@ parser.add_argument('dir', help='Directory to scan')
 
 args = parser.parse_args()
 files_using_php4_constructors = []
+
+if not path.isdir(args.dir):
+    print('%s is not a valid directory' % args.dir)
+    exit()
 
 for (dirpath, dirnames, filenames) in walk(args.dir):
     print('\nScanning directory: %s' % dirpath)
