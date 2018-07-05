@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-from itertools import product
 from os import walk
 from os import path
 from sys import exit
