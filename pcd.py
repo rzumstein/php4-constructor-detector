@@ -22,7 +22,6 @@ if not path.isdir(args.dir):
     print('%s is not a valid directory' % args.dir)
     exit()
 
-# args.ignore = list(map(lambda p: Path(p), args.ignore.strip(' \t\n\r\\').split(','))) if args.ignore else []
 args.ignore = args.ignore.strip(' \t\n\r\\/').split(',') if args.ignore else []
 
 files_using_php4_constructors = []
